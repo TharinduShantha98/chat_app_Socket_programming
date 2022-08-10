@@ -28,7 +28,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
-      <ImageView fitHeight="51.0" fitWidth="62.0" layoutX="708.0" layoutY="644.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="51.0" fitWidth="62.0" layoutX="708.0" layoutY="644.0" onMouseClicked="#fileUploadMouseClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/img/camera.png" />
          </image>

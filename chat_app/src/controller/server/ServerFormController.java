@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.control.TextArea;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -49,8 +50,6 @@ public class ServerFormController {
                     txtAreaServer.appendText("Tharindu : "+ response+ "\n");
                     txtAreaServer.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
 
-
-
                 }
 
 
@@ -80,6 +79,11 @@ public class ServerFormController {
         PrintWriter writer = new PrintWriter(socket.getOutputStream());
         writer.println(txtServer.getText());
         writer.flush();
+
+        txtAreaServer.appendText("                          "+txtServer.getText()+ "\n");
+
+       // txtAreaServer.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+
 
 
     }
