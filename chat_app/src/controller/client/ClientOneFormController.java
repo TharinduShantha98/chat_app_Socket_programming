@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 
 public class ClientOneFormController {
@@ -33,6 +34,7 @@ public class ClientOneFormController {
 
 
                     if(response.equalsIgnoreCase(TERMINATE)){
+                        System.out.println("appata siri client close una");
                         socket.close();
                     }
 
@@ -68,9 +70,10 @@ public class ClientOneFormController {
 
 
 
-    public void clientSendOnAction(ActionEvent actionEvent) {
-
-
+    public void clientSendOnAction(ActionEvent actionEvent) throws IOException {
+        PrintWriter printWriter= new PrintWriter(socket.getOutputStream());
+        printWriter.println(txtClient.getText());
+        printWriter.flush();
 
 
     }
