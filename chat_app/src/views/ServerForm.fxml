@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -12,7 +14,7 @@
 
 <AnchorPane prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.server.ServerFormController">
    <children>
-      <Label layoutX="488.0" layoutY="14.0" prefHeight="21.0" prefWidth="102.0" text="SERVER" textFill="#1e1d1d">
+      <Label layoutX="440.0" layoutY="14.0" prefHeight="21.0" prefWidth="102.0" text="SERVER" textFill="#1e1d1d">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
@@ -23,17 +25,49 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
-      <ScrollPane fx:id="sp_main" layoutX="418.0" layoutY="77.0" prefHeight="596.0" prefWidth="568.0">
+      <ScrollPane fx:id="sp_main" layoutX="425.0" layoutY="77.0" prefHeight="596.0" prefWidth="568.0">
          <content>
-            <VBox fx:id="vBox_message" prefHeight="593.0" prefWidth="563.0" />
+            <VBox fx:id="vBox_message" prefHeight="593.0" prefWidth="564.0" />
          </content>
       </ScrollPane>
       <Separator layoutX="420.0" layoutY="67.0" prefHeight="0.0" prefWidth="580.0" />
-      <Pane prefHeight="750.0" prefWidth="102.0" style="-fx-background-color: gray;" />
+      <Pane prefHeight="750.0" prefWidth="102.0" style="-fx-background-color: gray;">
+         <children>
+            <ImageView fitHeight="82.0" fitWidth="72.0" layoutX="16.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/chat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="72.0" fitWidth="80.0" layoutX="16.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/group.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="72.0" fitWidth="72.0" layoutX="15.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/status.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="72.0" fitWidth="72.0" layoutX="15.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/setting.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
       <Pane layoutX="102.0" prefHeight="750.0" prefWidth="314.0" style="-fx-background-color: #C4C1C1;">
          <children>
             <JFXTextField labelFloat="true" layoutX="23.0" layoutY="13.0" prefHeight="49.0" prefWidth="268.0" promptText="Search" />
          </children>
       </Pane>
+      <ImageView fitHeight="57.0" fitWidth="72.0" layoutX="920.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/img/call.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="49.0" fitWidth="48.0" layoutX="848.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/img/videocall.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
