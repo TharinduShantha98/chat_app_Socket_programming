@@ -3,11 +3,14 @@ package controller.client;
 import controller.server.ServerFormController;
 import javafx.scene.layout.VBox;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
+import java.nio.ByteBuffer;
 
 public class Client {
-    private Socket socket;
+    private  Socket socket;
     private BufferedWriter bufferedWriter;
     private BufferedReader bufferedReader;
 
@@ -44,6 +47,33 @@ public class Client {
     }
 
 
+    public  void  sendImageToServer(String imageLocation){
+
+        OutputStream outputStream = null;
+        try {
+            outputStream = socket.getOutputStream();
+            BufferedImage image = ImageIO.read(new File(imageLocation));
+
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ImageIO.write(image,"jpg",byteArrayOutputStream);
+            byte[] size = ByteBuffer.allocate(4).putInt(byteArrayOutputStream.size()).array();
+            outputStream.write(size);
+            outputStream.write(byteArrayOutputStream.toByteArray());
+            outputStream.flush();
+            System.out.println("Flushed: " + System.currentTimeMillis());
+            Thread.sleep(5000);
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+
+
+
     public void receiveMessageFromServer(VBox vBox){
 
         new Thread(new Runnable() {
@@ -53,7 +83,8 @@ public class Client {
                 while (socket.isConnected()){
                     try {
                         String messageFormClient = bufferedReader.readLine();
-                        ServerFormController.addLabel(messageFormClient, vBox);
+                       // ClientOneFormController.addLabel(messageFormClient, vBox);
+                        ClientOneFormController.addLabel(messageFormClient,vBox);
 
 
 
@@ -72,6 +103,8 @@ public class Client {
 
 
     }
+
+
 
 
     public void closeEverThing(Socket socket , BufferedReader bufferedReader, BufferedWriter bufferedWriter){

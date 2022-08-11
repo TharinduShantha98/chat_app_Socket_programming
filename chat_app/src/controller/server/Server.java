@@ -1,10 +1,14 @@
 package controller.server;
 
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.ByteBuffer;
 
 public class Server {
 
@@ -65,8 +69,39 @@ public class Server {
 
                 while (socket.isConnected()){
                     try {
-                        String messageFormClient = bufferedReader.readLine();
-                        ServerFormController.addLabel(messageFormClient, vBox);
+
+                        String location = receivedImageFormClient();
+                        ServerFormController.GetImageForDisplay(location, vBox);
+//                        if(location != null){
+//
+//
+//                        }else{
+//                            String messageFormClient = bufferedReader.readLine();
+//                            ServerFormController.addLabel(messageFormClient, vBox);
+//                        }
+
+
+
+
+
+
+
+//                        String messageFormClient = bufferedReader.readLine();
+//
+//                        if(messageFormClient != null){
+//                            ServerFormController.addLabel(messageFormClient, vBox);
+//
+//
+//                        }else{
+//                            String location = receivedImageFormClient();
+//                            ServerFormController.GetImageForDisplay(location, vBox);
+//
+//
+//
+//                        }
+
+
+
 
 
 
@@ -82,6 +117,30 @@ public class Server {
 
             }
         }).start();
+
+
+    }
+
+
+
+
+    public String  receivedImageFormClient() throws IOException {
+
+        InputStream inputStream = socket.getInputStream();
+        byte[] sizeAr = new byte[4];
+        inputStream.read(sizeAr);
+        int size = ByteBuffer.wrap(sizeAr).asIntBuffer().get();
+        byte[] imageAr = new byte[size];
+        inputStream.read(imageAr);
+        BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageAr));
+        boolean write = ImageIO.write(image, "jpg", new File("src/assets/client/test2.jpg"));
+        System.out.println("Received " + image.getHeight() + "x" + image.getWidth() + ": " + System.currentTimeMillis());
+
+        if(write){
+           return "src/assets/client/test2.jpg";
+        }
+
+       return null;
 
 
     }

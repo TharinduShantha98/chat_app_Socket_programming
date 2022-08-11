@@ -118,6 +118,41 @@ public class ServerFormController {
 
     }
 
+    public static   void GetImageForDisplay(String pathName, VBox vBox){
+
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER_LEFT);
+        hBox.setPadding(new Insets(5,5,5,10));
+
+
+        File file = new File(pathName);
+        try {
+            Image image1 = new Image(new FileInputStream(file));
+            ImageView imageView = new ImageView(image1);
+            imageView.setFitHeight(200);
+            imageView.setFitWidth(200);
+
+            TextFlow textFlow = new TextFlow(imageView);
+            hBox.getChildren().add(textFlow);
+
+
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    vBox.getChildren().add(hBox);
+                }
+            });
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+
     public static  void addLabel(String messageFromClient,VBox vBox){
 
         HBox hBox = new HBox();

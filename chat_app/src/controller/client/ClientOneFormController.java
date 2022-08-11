@@ -8,6 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -17,6 +19,7 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
@@ -144,6 +147,41 @@ public class ClientOneFormController {
 
     }
 
+    public  void sendImage(String pathName){
+
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER_RIGHT);
+        hBox.setPadding(new Insets(5,5,5,10));
+
+
+        File file = new File(pathName);
+        try {
+            Image image1 = new Image(new FileInputStream(file));
+            ImageView imageView = new ImageView(image1);
+            imageView.setFitHeight(200);
+            imageView.setFitWidth(200);
+
+            TextFlow textFlow = new TextFlow(imageView);
+            hBox.getChildren().add(textFlow);
+            vBox_message.getChildren().add(hBox);
+
+
+
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+
+
+
+
+
 
     public static  void addLabel(String messageFromClient,VBox vBox){
 
@@ -174,6 +212,13 @@ public class ClientOneFormController {
 
     }
 
+
+
+
+
+
+
+
     private void setListArray(){
         lsFile = new ArrayList<>();
         lsFile.add("*.jpg");
@@ -192,27 +237,13 @@ public class ClientOneFormController {
         if(file != null){
             System.out.println(file.getAbsolutePath());
             imageLocation = file.getAbsolutePath();
+            sendImage(imageLocation);
+           // client.sendImageToServer(imageLocation);
+            client.sendImageToServer(imageLocation);
+
+
 
         }
-
-
-
-
-       /* OutputStream outputStream = socket.getOutputStream();
-        BufferedImage image = ImageIO.read(new File(imageLocation));
-
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ImageIO.write(image,"jpg",byteArrayOutputStream);
-
-        byte[] size = ByteBuffer.allocate(4).putInt(byteArrayOutputStream.size()).array();
-        outputStream.write(size);
-        outputStream.write(byteArrayOutputStream.toByteArray());
-        outputStream.flush();
-        System.out.println("Flushed: " + System.currentTimeMillis());
-        Thread.sleep(5000);*/
-
-
-
 
 
     }
