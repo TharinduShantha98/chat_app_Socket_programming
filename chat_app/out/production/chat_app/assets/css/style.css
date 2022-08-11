@@ -1,6 +1,5 @@
-.button{
-    -fx-background-color: #a78686;
-    -fx-border: 1px solid black;
-
+.label{
+    -fx-background-color: #dec2c2;
+    -fx-background-radius: 100px;
 
 }

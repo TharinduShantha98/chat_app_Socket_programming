@@ -5,8 +5,11 @@ import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +18,8 @@ public class ClientOneFormController {
     private Socket socket = null;
     private static  final String TERMINATE = "EXIT";
     public List<String> lsFile;
+    public String imageLocation;
+
 
 
 
@@ -89,7 +94,7 @@ public class ClientOneFormController {
 
 
 
-    public void fileUploadMouseClick(MouseEvent mouseEvent) {
+    public void fileUploadMouseClick(MouseEvent mouseEvent) throws IOException, InterruptedException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("files",lsFile));
         File file =  fileChooser.showOpenDialog(null);
@@ -97,9 +102,29 @@ public class ClientOneFormController {
 
         if(file != null){
             System.out.println(file.getAbsolutePath());
-
+            imageLocation = file.getAbsolutePath();
 
         }
+
+
+
+
+        OutputStream outputStream = socket.getOutputStream();
+        BufferedImage image = ImageIO.read(new File(imageLocation));
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ImageIO.write(image,"jpg",byteArrayOutputStream);
+
+        byte[] size = ByteBuffer.allocate(4).putInt(byteArrayOutputStream.size()).array();
+        outputStream.write(size);
+
+
+
+        outputStream.write(byteArrayOutputStream.toByteArray());
+        outputStream.flush();
+        System.out.println("Flushed: " + System.currentTimeMillis());
+        Thread.sleep(5000);
+
 
 
 
