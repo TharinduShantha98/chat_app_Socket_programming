@@ -49,8 +49,6 @@ public class Server {
             bufferedWriter.flush();
 
 
-
-
         }catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error sending to the  client ");

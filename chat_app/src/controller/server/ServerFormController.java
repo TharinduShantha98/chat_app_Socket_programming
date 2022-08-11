@@ -65,68 +65,6 @@ public class ServerFormController {
         });
 
 
-//        new Thread(()->{
-//            try {
-//                ServerSocket serverSocket = new ServerSocket(5000);
-//                System.out.println("server started");
-//                socket = serverSocket.accept();
-//                System.out.println("client connected");
-
-                /*InputStreamReader inputStreamReader = new InputStreamReader(socket.getInputStream());
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-
-                while (true){
-                    String response = bufferedReader.readLine();
-
-                    if(response.equalsIgnoreCase(TERMINATE)){
-                        System.out.println("appatat siri server eka  close una ");
-                    }
-
-
-                    System.out.println(response);
-                    txtAreaServer.appendText("Tharindu : "+ response+ "\n");
-                    txtAreaServer.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
-
-                }*/
-
-
-               /* InputStream inputStream = socket.getInputStream();
-                byte[] sizeAr = new byte[4];
-                inputStream.read(sizeAr);
-                int size = ByteBuffer.wrap(sizeAr).asIntBuffer().get();
-
-                byte[] imageAr = new byte[size];
-                inputStream.read(imageAr);
-
-                BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageAr));
-                System.out.println("Received " + image.getHeight() + "x" + image.getWidth() + ": " + System.currentTimeMillis());
-                ImageIO.write(image,"jpg",new File("src/assets/client/test.jpg"));
-
-
-                File file = new File("src/assets/client/test.jpg");
-                Image image1 = new Image(file.toURI().toString());
-                imageView.setImage(image1);*/
-
-                // Thread.sleep(2000);
-                //image.get
-                //Image image1 = new Image(inputStream);
-                //imageView.setImage();
-                //txtAreaServer.appendText("Received " + image.getHeight() + "x" + image.getWidth() + ": " + System.currentTimeMillis());
-
-
-
-
-
-
-
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//
-//        }).start();
-
         server.receiveMessageFromClient(vBox_message);
 
 

@@ -29,10 +29,13 @@ public class ClientOneFormController {
     public ScrollPane sp_main;
     public VBox vBox_message;
 
-    private Socket socket = null;
+  //  private Socket socket = null;
     private static  final String TERMINATE = "EXIT";
     public List<String> lsFile;
     public String imageLocation;
+    private  Client client;
+
+
 
 
 
@@ -40,6 +43,16 @@ public class ClientOneFormController {
 
     public  void initialize(){
         setListArray();
+
+
+        try {
+            client = new Client(new Socket("localhost", 5000));
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
 
@@ -92,7 +105,7 @@ public class ClientOneFormController {
             }
         });
 
-        //client.receiveMessageFormServer(vbox_message)
+        client.receiveMessageFromServer(vBox_message);
 
     }
 
@@ -123,7 +136,9 @@ public class ClientOneFormController {
             hBox.getChildren().add(textFlow);
             vBox_message.getChildren().add(hBox);
 
-            //client.sendMessageToClient(messageToSend);
+            client.sendMessageToServer(messageToSend);
+
+
         }
 
 
@@ -183,7 +198,7 @@ public class ClientOneFormController {
 
 
 
-        OutputStream outputStream = socket.getOutputStream();
+       /* OutputStream outputStream = socket.getOutputStream();
         BufferedImage image = ImageIO.read(new File(imageLocation));
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -194,7 +209,7 @@ public class ClientOneFormController {
         outputStream.write(byteArrayOutputStream.toByteArray());
         outputStream.flush();
         System.out.println("Flushed: " + System.currentTimeMillis());
-        Thread.sleep(5000);
+        Thread.sleep(5000);*/
 
 
 
