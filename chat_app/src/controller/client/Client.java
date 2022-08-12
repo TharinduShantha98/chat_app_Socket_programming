@@ -47,7 +47,7 @@ public class Client {
     }
 
 
-    public  void  sendImageToServer(String imageLocation){
+    /*public  void  sendImageToServer(String imageLocation){
 
         OutputStream outputStream = null;
         try {
@@ -67,7 +67,7 @@ public class Client {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
 
 

@@ -15,6 +15,8 @@ public class Server {
 
     private ServerSocket serverSocket;
     private Socket socket;
+
+
     private BufferedReader bufferedReader;
     private BufferedWriter  bufferedWriter;
     int charactersLength;
@@ -23,17 +25,12 @@ public class Server {
     public Server(ServerSocket serverSocket) {
 
         try {
-
-
             this.serverSocket = serverSocket;
             System.out.println("server is created");
-
             this.socket = serverSocket.accept();
             System.out.println("client is connected");
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-
-
         } catch (IOException e) {
             System.out.println("Error creating server");
             e.printStackTrace();
@@ -48,11 +45,9 @@ public class Server {
     public void sendMessageToClient(String messageToClient){
 
         try {
-
             bufferedWriter.write(messageToClient);
             bufferedWriter.newLine();
             bufferedWriter.flush();
-
 
         }catch (IOException e) {
             e.printStackTrace();
@@ -71,28 +66,13 @@ public class Server {
                 while (socket.isConnected()){
                     try {
 
-
-
-
-
-//                      String location = receivedImageFormClient();
-//                      ServerFormController.GetImageForDisplay(location, vBox);
-
-
-
                         String messageFormClient = bufferedReader.readLine();
                         charactersLength = messageFormClient.length();
                         System.out.println(charactersLength);
+                        ServerFormController.addLabel(messageFormClient, vBox);
+                        System.out.println("thamath enawa");
 
-                        if(charactersLength<=20){
-                            ServerFormController.addLabel(messageFormClient, vBox);
-                            System.out.println("thamath enawa");
 
-                        }else{
-                            String location = receivedImageFormClient();
-                            ServerFormController.GetImageForDisplay(location, vBox);
-
-                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                         System.out.println("Error receiving message form  client ");
@@ -110,7 +90,7 @@ public class Server {
 
 
 
-    public String  receivedImageFormClient() throws IOException {
+    /*public String  receivedImageFormClient() throws IOException {
 
         InputStream inputStream = socket.getInputStream();
         byte[] sizeAr = new byte[4];
@@ -129,7 +109,7 @@ public class Server {
        return null;
 
 
-    }
+    }*/
 
 
 

@@ -28,29 +28,21 @@ import java.nio.ByteBuffer;
 
 public class ServerFormController {
     public JFXTextField txtServer;
-    public TextArea txtAreaServer;
-    public ImageView imageView;
     public ScrollPane sp_main;
     public VBox vBox_message;
 
 
-
-    public Socket  socket;
-    private static  final String TERMINATE = "EXIT";
-
     private  Server server;
+    private ServerImage serverImage;
 
 
 
 
     public void initialize(){
 
-
         try {
             server = new Server(new ServerSocket(5000));
-
-
-
+            serverImage = new ServerImage(new ServerSocket(4000));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -68,8 +60,16 @@ public class ServerFormController {
 
 
 
+        new Thread (()->{
+            serverImage.receiveImagesFromClient(vBox_message);
+
+        }).start();
+        System.out.println("kohed inne");
 
     }
+
+
+
 
 
 

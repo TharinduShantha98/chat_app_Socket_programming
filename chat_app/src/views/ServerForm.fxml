@@ -19,7 +19,7 @@
             <Font name="System Bold" size="28.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtServer" labelFloat="true" layoutX="422.0" layoutY="691.0" prefHeight="31.0" prefWidth="359.0" promptText="type" />
+      <JFXTextField fx:id="txtServer" labelFloat="true" layoutX="431.0" layoutY="691.0" prefHeight="31.0" prefWidth="359.0" promptText="type" />
       <JFXButton layoutX="824.0" layoutY="692.0" onAction="#serverSendOnAction" prefHeight="37.0" prefWidth="160.0" style="-fx-background-color: #888DA4;" text="SEND">
          <font>
             <Font name="System Bold" size="16.0" />
@@ -31,7 +31,7 @@
          </content>
       </ScrollPane>
       <Separator layoutX="420.0" layoutY="67.0" prefHeight="0.0" prefWidth="580.0" />
-      <Pane prefHeight="750.0" prefWidth="102.0" style="-fx-background-color: gray;">
+      <Pane prefHeight="750.0" prefWidth="102.0" style="-fx-background-color: #383535;">
          <children>
             <ImageView fitHeight="82.0" fitWidth="72.0" layoutX="16.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -54,9 +54,14 @@
                </image>
             </ImageView>
          </children></Pane>
-      <Pane layoutX="102.0" prefHeight="750.0" prefWidth="314.0" style="-fx-background-color: #C4C1C1;">
+      <Pane layoutX="102.0" prefHeight="750.0" prefWidth="314.0" style="-fx-background-color: #2A2828;">
          <children>
             <JFXTextField labelFloat="true" layoutX="23.0" layoutY="13.0" prefHeight="49.0" prefWidth="268.0" promptText="Search" />
+            <Pane layoutX="23.0" layoutY="102.0" prefHeight="87.0" prefWidth="268.0" style="-fx-background-color: #382643;" />
+            <Pane layoutX="23.0" layoutY="219.0" prefHeight="87.0" prefWidth="268.0" style="-fx-background-color: #382643;" />
+            <Pane layoutX="23.0" layoutY="340.0" prefHeight="87.0" prefWidth="268.0" style="-fx-background-color: #382643;" />
+            <Pane layoutX="23.0" layoutY="455.0" prefHeight="87.0" prefWidth="268.0" style="-fx-background-color: #382643;" />
+            <Pane layoutX="23.0" layoutY="570.0" prefHeight="87.0" prefWidth="268.0" style="-fx-background-color: #382643;" />
          </children>
       </Pane>
       <ImageView fitHeight="57.0" fitWidth="72.0" layoutX="920.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">

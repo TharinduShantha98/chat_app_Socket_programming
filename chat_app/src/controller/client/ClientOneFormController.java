@@ -38,6 +38,8 @@ public class ClientOneFormController {
     public String imageLocation;
     private  Client client;
 
+    private ClientImage clientImage;
+
 
 
 
@@ -50,6 +52,7 @@ public class ClientOneFormController {
 
         try {
             client = new Client(new Socket("localhost", 5000));
+            clientImage = new ClientImage(new Socket("localhost", 4000));
 
 
 
@@ -239,7 +242,7 @@ public class ClientOneFormController {
             imageLocation = file.getAbsolutePath();
             sendImage(imageLocation);
            // client.sendImageToServer(imageLocation);
-            client.sendImageToServer(imageLocation);
+            clientImage.sendImageToServer(imageLocation);
 
 
 
