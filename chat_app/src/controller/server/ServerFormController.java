@@ -64,7 +64,6 @@ public class ServerFormController {
             }
         });
 
-
         server.receiveMessageFromClient(vBox_message);
 
 

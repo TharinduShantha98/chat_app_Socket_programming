@@ -83,7 +83,7 @@ public class Client {
                 while (socket.isConnected()){
                     try {
                         String messageFormClient = bufferedReader.readLine();
-                       // ClientOneFormController.addLabel(messageFormClient, vBox);
+                       //ClientOneFormController.addLabel(messageFormClient, vBox);
                         ClientOneFormController.addLabel(messageFormClient,vBox);
 
 

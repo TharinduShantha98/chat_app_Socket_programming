@@ -17,6 +17,7 @@ public class Server {
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter  bufferedWriter;
+    int charactersLength;
 
 
     public Server(ServerSocket serverSocket) {
@@ -70,47 +71,32 @@ public class Server {
                 while (socket.isConnected()){
                     try {
 
-                        String location = receivedImageFormClient();
-                        ServerFormController.GetImageForDisplay(location, vBox);
-//                        if(location != null){
-//
-//
-//                        }else{
-//                            String messageFormClient = bufferedReader.readLine();
-//                            ServerFormController.addLabel(messageFormClient, vBox);
-//                        }
 
 
 
 
+//                      String location = receivedImageFormClient();
+//                      ServerFormController.GetImageForDisplay(location, vBox);
 
 
 
-//                        String messageFormClient = bufferedReader.readLine();
-//
-//                        if(messageFormClient != null){
-//                            ServerFormController.addLabel(messageFormClient, vBox);
-//
-//
-//                        }else{
-//                            String location = receivedImageFormClient();
-//                            ServerFormController.GetImageForDisplay(location, vBox);
-//
-//
-//
-//                        }
+                        String messageFormClient = bufferedReader.readLine();
+                        charactersLength = messageFormClient.length();
+                        System.out.println(charactersLength);
 
+                        if(charactersLength<=20){
+                            ServerFormController.addLabel(messageFormClient, vBox);
+                            System.out.println("thamath enawa");
 
+                        }else{
+                            String location = receivedImageFormClient();
+                            ServerFormController.GetImageForDisplay(location, vBox);
 
-
-
-
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                         System.out.println("Error receiving message form  client ");
                         closeEverThing(socket,bufferedReader,bufferedWriter);
-
-
 
                     }
                 }
@@ -173,10 +159,6 @@ public class Server {
                 e.printStackTrace();
             }
         }
-
-
-
-
 
     }
 }
