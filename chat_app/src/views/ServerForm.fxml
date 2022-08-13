@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.server.ServerFormController">
+<AnchorPane prefHeight="750.0" prefWidth="1000.0" style="-fx-background-color: #A4A08F;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.server.ServerFormController">
    <children>
       <Label layoutX="440.0" layoutY="14.0" prefHeight="21.0" prefWidth="102.0" text="SERVER" textFill="#1e1d1d">
          <font>
@@ -56,12 +56,77 @@
          </children></Pane>
       <Pane layoutX="102.0" prefHeight="750.0" prefWidth="314.0" style="-fx-background-color: #2A2828;">
          <children>
-            <JFXTextField labelFloat="true" layoutX="23.0" layoutY="13.0" prefHeight="49.0" prefWidth="268.0" promptText="Search" />
-            <Pane layoutX="23.0" layoutY="102.0" prefHeight="87.0" prefWidth="268.0" style="-fx-background-color: #382643;" />
-            <Pane layoutX="23.0" layoutY="219.0" prefHeight="87.0" prefWidth="268.0" style="-fx-background-color: #382643;" />
-            <Pane layoutX="23.0" layoutY="340.0" prefHeight="87.0" prefWidth="268.0" style="-fx-background-color: #382643;" />
-            <Pane layoutX="23.0" layoutY="455.0" prefHeight="87.0" prefWidth="268.0" style="-fx-background-color: #382643;" />
-            <Pane layoutX="23.0" layoutY="570.0" prefHeight="87.0" prefWidth="268.0" style="-fx-background-color: #382643;" />
+            <JFXTextField labelFloat="true" layoutX="23.0" layoutY="13.0" prefHeight="49.0" prefWidth="268.0" promptText="Search" unFocusColor="#dad1d1" />
+            <Pane layoutX="11.0" layoutY="102.0" prefHeight="87.0" prefWidth="296.0" style="-fx-background-color: #382643;">
+               <children>
+                  <ImageView fitHeight="79.0" fitWidth="90.0" layoutX="3.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/client2.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="108.0" layoutY="25.0" prefHeight="21.0" prefWidth="173.0" text="Janith sadaru" textFill="#e8dcdc">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="13.0" layoutY="219.0" prefHeight="87.0" prefWidth="296.0" style="-fx-background-color: #382643;">
+               <children>
+                  <ImageView fitHeight="92.0" fitWidth="85.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/userImage.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="86.0" layoutY="28.0" text="hasika sadaruwan" textFill="#f8f6f6">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="11.0" layoutY="340.0" prefHeight="87.0" prefWidth="296.0" style="-fx-background-color: #382643;">
+               <children>
+                  <ImageView fitHeight="92.0" fitWidth="85.0" layoutX="1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/client3.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="96.0" layoutY="29.0" text="sanu vithanage" textFill="#f8f4f4">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="455.0" prefHeight="87.0" prefWidth="296.0" style="-fx-background-color: #382643;">
+               <children>
+                  <ImageView fitHeight="92.0" fitWidth="85.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/client5.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="102.0" layoutY="29.0" text="Olivia" textFill="#f5eeee">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="11.0" layoutY="570.0" prefHeight="87.0" prefWidth="296.0" style="-fx-background-color: #382643;">
+               <children>
+                  <ImageView fitHeight="92.0" fitWidth="85.0" layoutX="-1.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/client4.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="100.0" layoutY="21.0" text="Mia" textFill="#f8f7f7">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </Pane>
       <ImageView fitHeight="57.0" fitWidth="72.0" layoutX="920.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">

@@ -250,4 +250,14 @@ public class ClientOneFormController {
 
 
     }
+
+    public void mouseOnClickMENEmoji(MouseEvent mouseEvent) {
+
+        String  MenEmoji = new String(Character.toChars(0x1F604));
+        txtClient.setText(MenEmoji);
+
+
+
+
+    }
 }
