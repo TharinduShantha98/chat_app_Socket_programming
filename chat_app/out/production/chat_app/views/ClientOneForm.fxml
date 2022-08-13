@@ -154,8 +154,9 @@
          </image>
       </ImageView>
       <FontAwesomeIconView glyphName="MEH_ALT" layoutX="483.0" layoutY="741.0" onMouseClicked="#mouseOnClickMENEmoji" size="25" />
-      <FontAwesomeIconView glyphName="HEART" layoutX="514.0" layoutY="742.0" size="25" />
-      <FontAwesomeIconView glyphName="HAND_PEACE_ALT" layoutX="550.0" layoutY="741.0" size="25" />
-      <FontAwesomeIconView glyphName="FROWN_ALT" layoutX="583.0" layoutY="744.0" size="25" />
+      <FontAwesomeIconView glyphName="HEART" layoutX="514.0" layoutY="742.0" onMouseClicked="#mouseClickHEARTemoji" size="25" />
+      <FontAwesomeIconView glyphName="HAND_PEACE_ALT" layoutX="550.0" layoutY="741.0" onMouseClicked="#mouseClickHANDemoji" size="25" />
+      <FontAwesomeIconView glyphName="FROWN_ALT" layoutX="624.0" layoutY="742.0" onMouseClicked="#mouseClickFROWN_ALTemoji" size="25" />
+      <FontAwesomeIconView glyphName="STAR" layoutX="586.0" layoutY="743.0" onMouseClicked="#mouseClickSTARTemoji" size="25" />
    </children>
 </AnchorPane>

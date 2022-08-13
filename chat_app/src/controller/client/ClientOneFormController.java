@@ -258,6 +258,31 @@ public class ClientOneFormController {
 
 
 
+    }
+
+    public void mouseClickHEARTemoji(MouseEvent mouseEvent) {
+
+        String  heartEmoji = new String(Character.toChars(0x2764));
+        txtClient.setText(heartEmoji);
+    }
+
+    public void mouseClickHANDemoji(MouseEvent mouseEvent) {
+        String  heartEmoji = new String(Character.toChars(0x270C));
+        txtClient.setText(heartEmoji);
+
+    }
+
+    public void mouseClickFROWN_ALTemoji(MouseEvent mouseEvent) {
+        String  disappointed_face = new String(Character.toChars(	0x1F61E));
+        txtClient.setText(disappointed_face);
+
+    }
+
+    public void mouseClickSTARTemoji(MouseEvent mouseEvent) {
+        String sparkles  = new String(Character.toChars(	0x2728));
+        txtClient.setText(sparkles);
+
+
 
     }
 }
