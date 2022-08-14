@@ -1,6 +1,7 @@
 package controller.client;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,8 +16,15 @@ public class LoginFormController {
 
 
     public JFXButton btnLogin;
+    public JFXTextField txtUserName;
 
-    public void loginOnAction(ActionEvent actionEvent) throws IOException {
+    public static String userName;
+
+
+    public  void loginOnAction(ActionEvent actionEvent) throws IOException {
+
+        userName = txtUserName.getText();
+
 
         Stage stage  = (Stage) btnLogin.getScene().getWindow();
         stage.close();

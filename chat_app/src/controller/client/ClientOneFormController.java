@@ -7,6 +7,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,6 +24,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,38 +33,63 @@ public class ClientOneFormController {
     public JFXTextField txtClient;
     public ScrollPane sp_main;
     public VBox vBox_message;
-
-  //  private Socket socket = null;
+  //private Socket socket = null;
     private static  final String TERMINATE = "EXIT";
     public List<String> lsFile;
     public String imageLocation;
+    public Label lblUserName;
     private  Client client;
 
+    private Clients clients;
     private ClientImage clientImage;
 
-
-
-
-
+    public  static  String userName;
 
 
     public  void initialize(){
         setListArray();
+        if(!LoginFormController.userName.isEmpty()){
+            userName = LoginFormController.userName;
+            System.out.println(userName);
+            lblUserName.setText(userName);
+        }else {
+            userName = "Tharindu";
 
-
-        try {
-            client = new Client(new Socket("localhost", 5000));
-            clientImage = new ClientImage(new Socket("localhost", 4000));
-
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
 
 
-       /* new Thread(()->{
+
+
+
+
+        new Thread(()->{
+
+            try {
+                clients = new Clients(new Socket("localhost",5000), userName);
+                clients.sendMessage(userName +" connected");
+
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }).start();
+
+
+
+
+
+        /*try {
+            client = new Client(new Socket("localhost", 5000));
+            clientImage = new ClientImage(new Socket("localhost", 4000));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+        /* new Thread(()->{
             try {
                 socket = new Socket("localhost",5000);
                 InputStreamReader inputStreamReader = new InputStreamReader(socket.getInputStream());
@@ -111,12 +138,17 @@ public class ClientOneFormController {
             }
         });
 
-        client.receiveMessageFromServer(vBox_message);
+
+
+       //client.receiveMessageFromServer(vBox_message);
+       // clients.listenForMessage(vBox_message);
+
+       // new Thread(()->{
+       //clients.listenForMessage(vBox_message);
+       // }).start();
+
 
     }
-
-
-
 
 
     public void clientSendOnAction(ActionEvent actionEvent) throws IOException {
@@ -142,13 +174,27 @@ public class ClientOneFormController {
             hBox.getChildren().add(textFlow);
             vBox_message.getChildren().add(hBox);
 
-            client.sendMessageToServer(messageToSend);
+         // client.sendMessageToServer(messageToSend);
+
+
+
+            new  Thread(()->{
+                clients.listenForMessage(vBox_message);
+                clients.sendMessage(messageToSend);
+            }).start();
+
 
 
         }
 
 
     }
+
+
+
+
+
+
 
     public  void sendImage(String pathName){
 
@@ -167,9 +213,6 @@ public class ClientOneFormController {
             TextFlow textFlow = new TextFlow(imageView);
             hBox.getChildren().add(textFlow);
             vBox_message.getChildren().add(hBox);
-
-
-
 
 
         } catch (FileNotFoundException e) {

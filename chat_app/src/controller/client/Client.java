@@ -15,7 +15,7 @@ public class Client {
     private BufferedReader bufferedReader;
 
 
-    public Client(Socket socket) {
+    /* public Client(Socket socket) {
         try {
             this.socket = socket;
             this.bufferedReader= new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -45,7 +45,7 @@ public class Client {
         }
 
     }
-
+*/
 
     /*public  void  sendImageToServer(String imageLocation){
 
@@ -69,12 +69,7 @@ public class Client {
 
     }*/
 
-
-
-
-
-
-    public void receiveMessageFromServer(VBox vBox){
+    /* public void receiveMessageFromServer(VBox vBox){
 
         new Thread(new Runnable() {
             @Override
@@ -102,12 +97,9 @@ public class Client {
         }).start();
 
 
-    }
+    }*/
 
-
-
-
-    public void closeEverThing(Socket socket , BufferedReader bufferedReader, BufferedWriter bufferedWriter){
+    /*public void closeEverThing(Socket socket , BufferedReader bufferedReader, BufferedWriter bufferedWriter){
         if(bufferedReader != null){
             try {
                 bufferedReader.close();
@@ -130,7 +122,7 @@ public class Client {
                 e.printStackTrace();
             }
         }
-    }
+    }*/
 
 
 

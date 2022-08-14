@@ -38,11 +38,16 @@ public class ServerFormController {
 
 
 
+
+
+
+
     public void initialize(){
 
         try {
             server = new Server(new ServerSocket(5000));
-            serverImage = new ServerImage(new ServerSocket(4000));
+            server.startServer();
+           // serverImage = new ServerImage(new ServerSocket(4000));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,15 +61,14 @@ public class ServerFormController {
             }
         });
 
-        server.receiveMessageFromClient(vBox_message);
+       // server.receiveMessageFromClient(vBox_message);
 
 
-
-        new Thread (()->{
+        /*new Thread (()->{
             serverImage.receiveImagesFromClient(vBox_message);
 
         }).start();
-        System.out.println("kohed inne");
+        System.out.println("kohed inne");*/
 
     }
 
@@ -109,7 +113,7 @@ public class ServerFormController {
             vBox_message.getChildren().add(hBox);
 
             // sendMessageToClient
-            server.sendMessageToClient(messageToSend);
+           // server.sendMessageToClient(messageToSend);
 
 
         }
@@ -117,7 +121,7 @@ public class ServerFormController {
 
     }
 
-    public static   void GetImageForDisplay(String pathName, VBox vBox){
+   /* public static   void GetImageForDisplay(String pathName, VBox vBox){
 
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER_LEFT);
@@ -148,11 +152,11 @@ public class ServerFormController {
         }
 
 
-    }
+    }*/
 
 
 
-    public static  void addLabel(String messageFromClient,VBox vBox){
+    /*public static  void addLabel(String messageFromClient,VBox vBox){
 
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.BASELINE_LEFT);
@@ -178,7 +182,7 @@ public class ServerFormController {
 
 
 
-    }
+    }*/
 
 
 

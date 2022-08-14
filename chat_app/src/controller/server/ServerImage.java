@@ -41,7 +41,7 @@ public class ServerImage {
 
                     String location = receivedImageFormClient();
                     System.out.println(location);
-                    ServerFormController.GetImageForDisplay(location, vBox);
+                    //ServerFormController.GetImageForDisplay(location, vBox);
 
                 } catch (IOException e) {
                     e.printStackTrace();

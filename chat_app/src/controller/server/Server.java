@@ -1,5 +1,6 @@
 package controller.server;
 
+import controller.client.ClientHandler;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 
@@ -15,26 +16,57 @@ public class Server {
 
     private ServerSocket serverSocket;
     private Socket socket;
-
-
     private BufferedReader bufferedReader;
     private BufferedWriter  bufferedWriter;
     int charactersLength;
 
 
     public Server(ServerSocket serverSocket) {
-
-        try {
-            this.serverSocket = serverSocket;
-            System.out.println("server is created");
-            this.socket = serverSocket.accept();
+        this.serverSocket = serverSocket;
+        System.out.println("server is created");
+        /*this.socket = serverSocket.accept();
             System.out.println("client is connected");
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-        } catch (IOException e) {
-            System.out.println("Error creating server");
+            this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));*/
+
+    }
+
+
+
+
+    public void  startServer(){
+
+        try{
+
+            while (!serverSocket.isClosed()){
+                Socket socket = serverSocket.accept();
+                System.out.println(socket.getPort());
+                System.out.println("A new Client has a connected!");
+
+                ClientHandler clientHandler = new ClientHandler(socket);
+
+                Thread thread = new Thread(clientHandler);
+                thread.start();
+
+            }
+
+        }catch (IOException e) {
             e.printStackTrace();
         }
+
+
+    }
+
+
+    public void closeServerSocket(){
+        try {
+            if(serverSocket != null){
+                serverSocket.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
@@ -42,7 +74,11 @@ public class Server {
 
 
 
-    public void sendMessageToClient(String messageToClient){
+
+
+
+
+    /*public void sendMessageToClient(String messageToClient){
 
         try {
             bufferedWriter.write(messageToClient);
@@ -55,9 +91,9 @@ public class Server {
         }
 
 
-    }
+    }*/
 
-    public void receiveMessageFromClient(VBox vBox){
+    /* public void receiveMessageFromClient(VBox vBox){
 
         new Thread(new Runnable() {
             @Override
@@ -85,10 +121,7 @@ public class Server {
         }).start();
 
 
-    }
-
-
-
+    }*/
 
     /*public String  receivedImageFormClient() throws IOException {
 
@@ -110,6 +143,9 @@ public class Server {
 
 
     }*/
+
+
+
 
 
 

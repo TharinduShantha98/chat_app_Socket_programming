@@ -17,7 +17,7 @@
          </image>
       </ImageView>
       <Separator layoutX="480.0" layoutY="103.0" orientation="VERTICAL" prefHeight="647.0" prefWidth="20.0" />
-      <JFXTextField layoutX="82.0" layoutY="344.0" prefHeight="31.0" prefWidth="347.0" promptText="user Name" />
+      <JFXTextField fx:id="txtUserName" layoutX="82.0" layoutY="344.0" prefHeight="31.0" prefWidth="347.0" promptText="user Name" />
       <JFXTextField layoutX="82.0" layoutY="411.0" prefHeight="31.0" prefWidth="347.0" promptText="password" />
       <JFXButton fx:id="btnLogin" layoutX="140.0" layoutY="515.0" onAction="#loginOnAction" prefHeight="31.0" prefWidth="210.0" style="-fx-background-color: #888DA4;" text="Log In" textFill="#121ce1">
          <font>

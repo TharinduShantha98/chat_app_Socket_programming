@@ -19,7 +19,7 @@
             <Image url="@../assets/img/login.png" />
          </image>
       </ImageView>
-      <Label layoutX="794.0" layoutY="31.0" text="User Name">
+      <Label fx:id="lblUserName" layoutX="728.0" layoutY="31.0" prefHeight="28.0" prefWidth="165.0" text="User Name">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
