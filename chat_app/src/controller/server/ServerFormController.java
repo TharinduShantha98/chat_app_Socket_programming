@@ -33,6 +33,7 @@ public class ServerFormController {
 
 
     private  Server server;
+    private Server server2;
     private ServerImage serverImage;
 
 
@@ -43,6 +44,10 @@ public class ServerFormController {
         try {
             server = new Server(new ServerSocket(5000));
             server.startServer();
+
+           /* server2 = new Server(new ServerSocket(4000));
+            server2.startServer2();*/
+
 
            //serverImage = new ServerImage(new ServerSocket(4000));
         } catch (IOException e) {

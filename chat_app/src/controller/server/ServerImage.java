@@ -40,7 +40,6 @@ public class ServerImage {
                 e.printStackTrace();
             }
 
-
         }
 
 

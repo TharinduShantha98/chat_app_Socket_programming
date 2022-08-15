@@ -23,14 +23,12 @@ public class ClientHandler implements Runnable {
 
             //client user name implement
             this.clientUserName = bufferedReader.readLine();
-          //  this.clientUserName = Clients.username;
+            //this.clientUserName = Clients.username;
 
             System.out.println(socket.getPort());
             this.port = socket.getPort();
 
             clientHandlers.add(this);
-
-
             //broadcastMessage("SERVER" + clientUserName +" has entered the chat" );
             System.out.println("methnanta awa");
             System.out.println(this.clientUserName);

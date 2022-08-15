@@ -29,7 +29,7 @@ public class ClientImage {
 
     }
 
-    public  void  sendImageToServer(String imageLocation){
+  /*  public  void  sendImageToServer(String imageLocation){
         System.out.println("methanta awa yakooo ");
         OutputStream outputStream = null;
         try {
@@ -104,7 +104,7 @@ public class ClientImage {
         return null;
 
 
-    }
+    }*/
 
 
 

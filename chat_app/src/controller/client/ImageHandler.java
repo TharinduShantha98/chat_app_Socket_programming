@@ -26,14 +26,13 @@ public class ImageHandler  implements  Runnable{
         this.socket = socket;
         this.port = socket.getPort();
 
-//        try {
+        //        try {
 //            inputStream = socket.getInputStream();
 //            outputStream = socket.getOutputStream();
 //
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-
 
         imageHandlers.add(this);
 
@@ -45,9 +44,7 @@ public class ImageHandler  implements  Runnable{
 
     @Override
     public void run() {
-
-
-       /* while (socket.isConnected()){
+        while (socket.isConnected()){
             try {
                 String s = receivedImageFormClient();
                 System.out.println(s);
@@ -59,17 +56,11 @@ public class ImageHandler  implements  Runnable{
                 e.printStackTrace();
             }
 
-        }*/
+        }
 
     }
 
-
-
-
-
-
     public String  receivedImageFormClient() throws IOException {
-
         InputStream inputStream = socket.getInputStream();
         byte[] sizeAr = new byte[4];
         inputStream.read(sizeAr);
@@ -79,13 +70,10 @@ public class ImageHandler  implements  Runnable{
         BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageAr));
         boolean write = ImageIO.write(image, "jpg", new File("src/assets/client/test2.jpg"));
         System.out.println("Received " + image.getHeight() + "x" + image.getWidth() + ": " + System.currentTimeMillis());
-
         if(write){
             broadCastImage("src/assets/client/test2.jpg");
         }
-
-
-       /* int dstWidth = 100;
+         /* int dstWidth = 100;
         int dstHeight = 100;
         InputStream imageStream = socket.getInputStream();
         byte[] sizeAr = new byte[4];
@@ -109,7 +97,6 @@ public class ImageHandler  implements  Runnable{
         if(jpg){
             return "src/assets/client/test2.jpg";
         }*/
-
         return null;
 
 

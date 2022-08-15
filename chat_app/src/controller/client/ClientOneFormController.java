@@ -33,16 +33,13 @@ public class ClientOneFormController {
     public JFXTextField txtClient;
     public ScrollPane sp_main;
     public VBox vBox_message;
-  //private Socket socket = null;
-    private static  final String TERMINATE = "EXIT";
+    public Label lblUserName;
     public List<String> lsFile;
     public String imageLocation;
-    public Label lblUserName;
-    private  Client client;
+
 
     private Clients clients;
     private ClientImage clientImage;
-
     public  static  String userName;
 
 
@@ -61,6 +58,8 @@ public class ClientOneFormController {
         new Thread(()->{
 
             try {
+
+              //  clientImage = new ClientImage(new Socket("localhost",4000));
                 clients = new Clients(new Socket("localhost",5000), userName);
                 clients.sendMessage(userName +" connected");
 
@@ -103,9 +102,6 @@ public class ClientOneFormController {
 
             hBox.getChildren().add(textFlow);
             vBox_message.getChildren().add(hBox);
-
-
-
 
 
             new  Thread(()->{
@@ -207,13 +203,13 @@ public class ClientOneFormController {
             new Thread(()->{
 
                /* try {
-                    clientImage = new ClientImage(new Socket("localhost",5000));
+                    clientImage = new ClientImage(new Socket("localhost",4000));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }*/
 
-                clientImage.receiveImagesFromClient(vBox_message);
-                clientImage.sendImageToServer(imageLocation);
+                clients.receiveImagesFromClient(vBox_message);
+                clients.sendImageToServer(imageLocation);
             }).start();
 
 
@@ -282,6 +278,8 @@ public class ClientOneFormController {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+
 
 
     }

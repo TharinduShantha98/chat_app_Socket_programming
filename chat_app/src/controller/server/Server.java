@@ -25,7 +25,7 @@ public class Server {
     public Server(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
         System.out.println("server is created");
-        /*this.socket = serverSocket.accept();
+        /*  this.socket = serverSocket.accept();
             System.out.println("client is connected");
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));*/
@@ -44,16 +44,13 @@ public class Server {
                 System.out.println(socket.getPort());
                 System.out.println("A new Client has a connected!");
 
-              /*  InputStream inputStream = socket.getInputStream();
-                int read = inputStream.read();
-*/
                 ClientHandler clientHandler = new ClientHandler(socket);
                 Thread thread = new Thread(clientHandler);
                 thread.start();
 
-                 /*ImageHandler imageHandler = new ImageHandler(socket);
-                 Thread thread1 = new Thread(imageHandler);
-                 thread1.start();*/
+               /*ImageHandler imageHandler = new ImageHandler(socket);
+                Thread thread1 = new Thread(imageHandler);
+                thread1.start();*/
 
             }
 
@@ -67,16 +64,30 @@ public class Server {
 
     public void startServer2(){
 
+        while (!serverSocket.isClosed()) {
 
-        new Thread(()->{
-            ImageHandler imageHandler = new ImageHandler(socket);
             try {
-                imageHandler.receivedImageFormClient();
+                socket = serverSocket.accept();
+                System.out.println(socket.getPort());
+                System.out.println("A new Client has a connected!");
+
+
+                new Thread(()->{
+                    ImageHandler imageHandler = new ImageHandler(socket);
+                    try {
+                        imageHandler.receivedImageFormClient();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }).start();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }).start();
 
+
+
+        }
 
     }
 
