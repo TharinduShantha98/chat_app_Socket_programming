@@ -1,6 +1,7 @@
 package controller.server;
 
 import controller.client.ClientHandler;
+import controller.client.ImageHandler;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 
@@ -43,16 +44,38 @@ public class Server {
                 System.out.println(socket.getPort());
                 System.out.println("A new Client has a connected!");
 
+              /*  InputStream inputStream = socket.getInputStream();
+                int read = inputStream.read();
+*/
                 ClientHandler clientHandler = new ClientHandler(socket);
-
                 Thread thread = new Thread(clientHandler);
                 thread.start();
 
+                 /*ImageHandler imageHandler = new ImageHandler(socket);
+                 Thread thread1 = new Thread(imageHandler);
+                 thread1.start();*/
+
             }
+
 
         }catch (IOException e) {
             e.printStackTrace();
         }
+
+
+    }
+
+    public void startServer2(){
+
+
+        new Thread(()->{
+            ImageHandler imageHandler = new ImageHandler(socket);
+            try {
+                imageHandler.receivedImageFormClient();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
 
 
     }
@@ -69,87 +92,6 @@ public class Server {
 
 
     }
-
-
-
-
-
-
-
-
-
-    /*public void sendMessageToClient(String messageToClient){
-
-        try {
-            bufferedWriter.write(messageToClient);
-            bufferedWriter.newLine();
-            bufferedWriter.flush();
-
-        }catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error sending to the  client ");
-        }
-
-
-    }*/
-
-    /* public void receiveMessageFromClient(VBox vBox){
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                while (socket.isConnected()){
-                    try {
-
-                        String messageFormClient = bufferedReader.readLine();
-                        charactersLength = messageFormClient.length();
-                        System.out.println(charactersLength);
-                        ServerFormController.addLabel(messageFormClient, vBox);
-                        System.out.println("thamath enawa");
-
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        System.out.println("Error receiving message form  client ");
-                        closeEverThing(socket,bufferedReader,bufferedWriter);
-
-                    }
-                }
-
-            }
-        }).start();
-
-
-    }*/
-
-    /*public String  receivedImageFormClient() throws IOException {
-
-        InputStream inputStream = socket.getInputStream();
-        byte[] sizeAr = new byte[4];
-        inputStream.read(sizeAr);
-        int size = ByteBuffer.wrap(sizeAr).asIntBuffer().get();
-        byte[] imageAr = new byte[size];
-        inputStream.read(imageAr);
-        BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageAr));
-        boolean write = ImageIO.write(image, "jpg", new File("src/assets/client/test2.jpg"));
-        System.out.println("Received " + image.getHeight() + "x" + image.getWidth() + ": " + System.currentTimeMillis());
-
-        if(write){
-           return "src/assets/client/test2.jpg";
-        }
-
-       return null;
-
-
-    }*/
-
-
-
-
-
-
-
 
     public void closeEverThing(Socket socket , BufferedReader bufferedReader, BufferedWriter bufferedWriter){
 

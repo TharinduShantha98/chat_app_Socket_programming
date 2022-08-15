@@ -2,8 +2,11 @@ package controller.client;
 
 import javafx.scene.layout.VBox;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
+import java.nio.ByteBuffer;
 
 public class Clients {
     private Socket socket;
@@ -36,19 +39,13 @@ public class Clients {
 //            bufferedWriter.write(username);
 //            bufferedWriter.newLine();
 //            bufferedWriter.flush();
-
-
             bufferedWriter.write(username+": " + messageToSend);
             bufferedWriter.newLine();
             bufferedWriter.flush();
 
 
-                //System.out.println(messageToSend);
-                //System.out.println("socket is connected");
-
-
-
-
+            //System.out.println(messageToSend);
+            //System.out.println("socket is connected");
 
 
         } catch (IOException e) {
@@ -73,9 +70,6 @@ public class Clients {
 
                     try {
                          String messageFormGroupChat = bufferedReader.readLine();
-                        /*System.out.println(messageFormGroupChat);
-                        System.out.println("meka harii palayan yako");*/
-
                         if(messageFormGroupChat != null){
                             ClientOneFormController.addLabel(messageFormGroupChat,vBox);
 

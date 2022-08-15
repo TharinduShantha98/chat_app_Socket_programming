@@ -38,19 +38,27 @@ public class ServerFormController {
 
 
 
-
-
-
-
     public void initialize(){
 
         try {
             server = new Server(new ServerSocket(5000));
             server.startServer();
-           // serverImage = new ServerImage(new ServerSocket(4000));
+
+           //serverImage = new ServerImage(new ServerSocket(4000));
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+
+
+       /* try {
+            serverImage = new ServerImage(new ServerSocket(4000));
+            serverImage.startImageServer();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
 
 
         vBox_message.heightProperty().addListener(new ChangeListener<Number>() {
@@ -62,7 +70,6 @@ public class ServerFormController {
         });
 
        // server.receiveMessageFromClient(vBox_message);
-
 
         /*new Thread (()->{
             serverImage.receiveImagesFromClient(vBox_message);
@@ -121,7 +128,7 @@ public class ServerFormController {
 
     }
 
-   /* public static   void GetImageForDisplay(String pathName, VBox vBox){
+    /* public static   void GetImageForDisplay(String pathName, VBox vBox){
 
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER_LEFT);
@@ -153,9 +160,6 @@ public class ServerFormController {
 
 
     }*/
-
-
-
     /*public static  void addLabel(String messageFromClient,VBox vBox){
 
         HBox hBox = new HBox();

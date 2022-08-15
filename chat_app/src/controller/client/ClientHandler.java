@@ -11,7 +11,6 @@ public class ClientHandler implements Runnable {
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
     private  String clientUserName;
-
     private int port;
 
 

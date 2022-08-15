@@ -58,16 +58,12 @@ public class ClientOneFormController {
         }
 
 
-
-
-
-
-
         new Thread(()->{
 
             try {
                 clients = new Clients(new Socket("localhost",5000), userName);
                 clients.sendMessage(userName +" connected");
+
 
             } catch (UnknownHostException e) {
                 e.printStackTrace();
@@ -78,59 +74,6 @@ public class ClientOneFormController {
         }).start();
 
 
-
-
-
-        /*try {
-            client = new Client(new Socket("localhost", 5000));
-            clientImage = new ClientImage(new Socket("localhost", 4000));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
-        /* new Thread(()->{
-            try {
-                socket = new Socket("localhost",5000);
-                InputStreamReader inputStreamReader = new InputStreamReader(socket.getInputStream());
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-
-                while (true){
-                    String response =  bufferedReader.readLine();
-
-
-                    if(response.equalsIgnoreCase(TERMINATE)){
-                        System.out.println("appata siri client close una");
-                        socket.close();
-                    }
-
-
-                    System.out.println(response);
-
-
-
-
-
-
-
-
-                }
-
-
-
-
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
-        }).start();*/
-
-
-
         vBox_message.heightProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -139,26 +82,13 @@ public class ClientOneFormController {
         });
 
 
-
-       //client.receiveMessageFromServer(vBox_message);
-       // clients.listenForMessage(vBox_message);
-
-       // new Thread(()->{
-       //clients.listenForMessage(vBox_message);
-       // }).start();
-
-
     }
 
 
     public void clientSendOnAction(ActionEvent actionEvent) throws IOException {
-      /*  PrintWriter printWriter= new PrintWriter(socket.getOutputStream());
-        printWriter.println(txtClient.getText());
-        printWriter.flush();*/
+
 
         String messageToSend = txtClient.getText();
-
-
         if(!messageToSend.isEmpty()){
             HBox hBox = new HBox();
             hBox.setAlignment(Pos.CENTER_RIGHT);
@@ -174,7 +104,7 @@ public class ClientOneFormController {
             hBox.getChildren().add(textFlow);
             vBox_message.getChildren().add(hBox);
 
-         // client.sendMessageToServer(messageToSend);
+
 
 
 
@@ -190,9 +120,107 @@ public class ClientOneFormController {
 
     }
 
+    public static  void addLabel(String messageFromClient,VBox vBox){
+
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.BASELINE_LEFT);
+        hBox.setPadding(new Insets(5,5,5,10));
+
+
+        Text text = new Text(messageFromClient);
+        text.setStyle("-fx-font-weight: bold");
+        TextFlow textFlow = new TextFlow(text);
+        textFlow.setStyle("-fx-background-color: rgb(139,136,76)");
+        //textFlow.setStyle("-fx-background-radius: 20px");
+
+        textFlow.setPadding(new Insets(5,10,5,10));
+        hBox.getChildren().add(textFlow);
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                vBox.getChildren().add(hBox);
+            }
+        });
 
 
 
+
+    }
+
+
+    public void mouseOnClickMENEmoji(MouseEvent mouseEvent) {
+        String  MenEmoji = new String(Character.toChars(0x1F604));
+        txtClient.setText(MenEmoji);
+
+    }
+
+    public void mouseClickHEARTemoji(MouseEvent mouseEvent) {
+
+        String  heartEmoji = new String(Character.toChars(0x2764));
+        txtClient.setText(heartEmoji);
+    }
+
+    public void mouseClickHANDemoji(MouseEvent mouseEvent) {
+        String  heartEmoji = new String(Character.toChars(0x270C));
+        txtClient.setText(heartEmoji);
+
+    }
+
+    public void mouseClickFROWN_ALTemoji(MouseEvent mouseEvent) {
+        String  disappointed_face = new String(Character.toChars(	0x1F61E));
+        txtClient.setText(disappointed_face);
+
+    }
+
+    public void mouseClickSTARTemoji(MouseEvent mouseEvent) {
+        String sparkles  = new String(Character.toChars(	0x2728));
+        txtClient.setText(sparkles);
+
+
+
+    }
+
+
+    private void setListArray(){
+        lsFile = new ArrayList<>();
+        lsFile.add("*.jpg");
+        lsFile.add("*.jpeg");
+        lsFile.add("*.png");
+    }
+
+
+
+    public void fileUploadMouseClick(MouseEvent mouseEvent) throws IOException, InterruptedException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("files",lsFile));
+        File file =  fileChooser.showOpenDialog(null);
+
+
+        if(file != null){
+            System.out.println(file.getAbsolutePath());
+            imageLocation = file.getAbsolutePath();
+            sendImage(imageLocation);
+           // client.sendImageToServer(imageLocation);
+
+
+            new Thread(()->{
+
+               /* try {
+                    clientImage = new ClientImage(new Socket("localhost",5000));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }*/
+
+                clientImage.receiveImagesFromClient(vBox_message);
+                clientImage.sendImageToServer(imageLocation);
+            }).start();
+
+
+        }
+
+
+    }
 
 
 
@@ -226,106 +254,37 @@ public class ClientOneFormController {
 
 
 
-
-
-
-    public static  void addLabel(String messageFromClient,VBox vBox){
-
+    public static   void GetImageForDisplay(String pathName, VBox vBox){
 
         HBox hBox = new HBox();
-        hBox.setAlignment(Pos.BASELINE_LEFT);
+        hBox.setAlignment(Pos.CENTER_LEFT);
         hBox.setPadding(new Insets(5,5,5,10));
 
 
-        Text text = new Text(messageFromClient);
-        text.setStyle("-fx-font-weight: bold");
-        TextFlow textFlow = new TextFlow(text);
-        textFlow.setStyle("-fx-background-color: rgb(139,136,76)");
-        // textFlow.setStyle("-fx-background-radius: 20px");
+        File file = new File(pathName);
+        try {
+            Image image1 = new Image(new FileInputStream(file));
+            ImageView imageView = new ImageView(image1);
+            imageView.setFitHeight(200);
+            imageView.setFitWidth(200);
 
-        textFlow.setPadding(new Insets(5,10,5,10));
-        hBox.getChildren().add(textFlow);
-
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                vBox.getChildren().add(hBox);
-            }
-        });
+            TextFlow textFlow = new TextFlow(imageView);
+            hBox.getChildren().add(textFlow);
 
 
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    vBox.getChildren().add(hBox);
+                }
+            });
 
-
-    }
-
-
-
-
-
-
-
-
-    private void setListArray(){
-        lsFile = new ArrayList<>();
-        lsFile.add("*.jpg");
-        lsFile.add("*.jpeg");
-        lsFile.add("*.png");
-    }
-
-
-
-    public void fileUploadMouseClick(MouseEvent mouseEvent) throws IOException, InterruptedException {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("files",lsFile));
-        File file =  fileChooser.showOpenDialog(null);
-
-
-        if(file != null){
-            System.out.println(file.getAbsolutePath());
-            imageLocation = file.getAbsolutePath();
-            sendImage(imageLocation);
-           // client.sendImageToServer(imageLocation);
-            clientImage.sendImageToServer(imageLocation);
-
-
-
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
 
 
     }
 
-    public void mouseOnClickMENEmoji(MouseEvent mouseEvent) {
 
-        String  MenEmoji = new String(Character.toChars(0x1F604));
-        txtClient.setText(MenEmoji);
-
-
-
-    }
-
-    public void mouseClickHEARTemoji(MouseEvent mouseEvent) {
-
-        String  heartEmoji = new String(Character.toChars(0x2764));
-        txtClient.setText(heartEmoji);
-    }
-
-    public void mouseClickHANDemoji(MouseEvent mouseEvent) {
-        String  heartEmoji = new String(Character.toChars(0x270C));
-        txtClient.setText(heartEmoji);
-
-    }
-
-    public void mouseClickFROWN_ALTemoji(MouseEvent mouseEvent) {
-        String  disappointed_face = new String(Character.toChars(	0x1F61E));
-        txtClient.setText(disappointed_face);
-
-    }
-
-    public void mouseClickSTARTemoji(MouseEvent mouseEvent) {
-        String sparkles  = new String(Character.toChars(	0x2728));
-        txtClient.setText(sparkles);
-
-
-
-    }
 }
